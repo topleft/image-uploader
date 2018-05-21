@@ -1,0 +1,38 @@
+version: '2.1'
+
+services:
+
+  image-processing-db:
+    container_name: image-processing-db
+    build: ./api/src/db
+    ports:
+      - '5433:5432' # expose ports - HOST:CONTAINER
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    healthcheck:
+      test: exit 0
+
+  image-processing-api:
+    container_name: image-processing-api
+    build: ./api/
+    volumes:
+      - './api:/usr/src/app'
+      - './api/package.json:/usr/src/package.json'
+    ports:
+      - '3000:3000' # expose ports - HOST:CONTAINER
+    environment:
+      - DEV_DB=postgres://postgres:postgres@image-processing-db:5432/image_processing_dev
+      - TEST_DB=postgres://postgres:postgres@image-processing-db:5432/image_processing_test
+      - NODE_ENV=${NODE_ENV}
+      - TOKEN_SECRET=temporary
+    depends_on:
+      image-processing-db:
+        condition: service_healthy
+    links:
+      - image-processing-db
+
+volumes:
+  pgdata:
