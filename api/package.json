@@ -7,6 +7,7 @@
     "test": "export NODE_ENV=test && './app/node_modules/mocha/bin/_mocha' './app/test/runner.test.js'"
   },
   "dependencies": {
+    "aws-sdk": "^2.247.1",
     "bcryptjs": "^2.4.0",
     "body-parser": "~1.15.1",
     "cors": "^2.8.4",
