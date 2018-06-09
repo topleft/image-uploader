@@ -24,7 +24,7 @@ describe('s3 helpers', () => {
       return s3Helpers.listAllFromBucket('no-bucket').should.be.rejected;
     });
 
-    it.only('should list all items in a bucket', () => {
+    it('should list all items in a bucket', () => {
 
       result = s3Helpers.listAllFromBucket('image-processing-dev')
       result.then((res) => console.log(res)).catch((err) => console.log('err',err));
