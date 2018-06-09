@@ -1,7 +1,10 @@
+require('dotenv').config({path: '/usr/src/app/.env'});
 const authRoutes = require('./routes/auth/auth');
-const basicDao = require('./helpers/basic-crud');
-const authDao = require('./helpers/auth');
+const basicHelpers = require('./helpers/basic-crud');
+const authHelpers = require('./helpers/auth');
+const s3Helpers = require('./helpers/s3');
 
 authRoutes();
-authDao();
-basicDao();
+authHelpers();
+basicHelpers();
+s3Helpers();
