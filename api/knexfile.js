@@ -1,5 +1,5 @@
 const path = require('path');
-
+console.log('Test_DB', process.env.TEST_DB)
 module.exports = {
   development: {
     client: 'postgresql',

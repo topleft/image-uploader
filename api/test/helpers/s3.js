@@ -26,7 +26,6 @@ module.exports = tests = () => {
       it('should list all items in a bucket', () => {
 
         result = s3Helpers.listAllFromBucket('image-processing-dev')
-        result.then((res) => console.log(res)).catch((err) => console.log('err',err));
         return result.should.eventually.have.property('Contents').length(1);
 
       });

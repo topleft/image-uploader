@@ -12,6 +12,9 @@ ENV PATH /usr/src/node_modules/.bin:$PATH
 ADD ./package.json /usr/src/package.json
 RUN npm install
 
+ADD ./ /usr/src/.
+
+RUN ls /usr/src
 
 # start app
 CMD ["npm", "start"]

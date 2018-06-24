@@ -19,7 +19,7 @@ services:
     container_name: image-processing-api
     build: ./api/
     volumes:
-      - './api:/usr/src/app'
+      - './api:/usr/src'
       - './api/package.json:/usr/src/package.json'
     ports:
       - '3000:3000' # expose ports - HOST:CONTAINER
@@ -28,6 +28,8 @@ services:
       - TEST_DB=postgres://postgres:postgres@image-processing-db:5432/image_processing_test
       - NODE_ENV=${NODE_ENV}
       - TOKEN_SECRET=temporary
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
     depends_on:
       image-processing-db:
         condition: service_healthy
