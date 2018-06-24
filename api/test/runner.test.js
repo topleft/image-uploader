@@ -1,7 +1,11 @@
 const authRoutes = require('./routes/auth/auth');
-const basicDao = require('./helpers/basic-crud');
-const authDao = require('./helpers/auth');
+const basicHelpers = require('./helpers/basic-crud');
+const authHelpers = require('./helpers/auth');
+const s3Helpers = require('./helpers/s3');
 
+
+console.log('running rom the test runner');
 authRoutes();
-authDao();
-basicDao();
+authHelpers();
+basicHelpers();
+s3Helpers();
